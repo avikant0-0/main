@@ -17,7 +17,7 @@ fetch(URL)
   })
 
   .then((data) => {
-    console.log(data);
+    // console.log(data);
 
     const title = data.result[0].title;
     const body = data.result[0].body[0].children[0].text;
@@ -46,7 +46,7 @@ fetch(imageURL)
     }
   })
   .then((data) => {
-    console.log(data.result[0].imageUrl);
+    // console.log(data.result[0].imageUrl);
     let imgurl = data.result[0].imageUrl;
     document.getElementById("imageElement").src = imgurl + "?h=400";
   })
@@ -84,6 +84,6 @@ async function sendToSanity() {
   const response = await fetch(url, options);
   const data = await response.json();
 
-  console.log(data);
+  // console.log(data);
   document.getElementById("myString").value = "";
 }
