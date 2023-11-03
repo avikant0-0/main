@@ -1,4 +1,6 @@
-let QUERY1 = encodeURIComponent(`*[_type == 'comments'].title`);
+let QUERY1 = encodeURIComponent(
+  `*[_type == "comments"] | order(_createdAt desc).title`
+);
 // Compose the URL for your project's endpoint and add the query
 let URL1 = `https://${PROJECT_ID}.api.sanity.io/v2021-10-21/data/query/${DATASET}?query=${QUERY1}`;
 fetch(URL1)
