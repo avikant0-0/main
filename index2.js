@@ -13,9 +13,9 @@ fetch(URL1)
   })
 
   .then((data) => {
-    console.log(data);
+    // console.log(data);
     data.result.forEach((item) => {
-      console.log(item);
+      // console.log(item);
       var commentContainer = document.getElementById("comments");
       var h4elelement = document.createElement("h4");
       h4elelement.textContent = item;
@@ -30,3 +30,8 @@ fetch(URL1)
     console.error("Error:", error);
     // datacontainer.innerHTML = "Failed to fetch data.";
   });
+
+function refreshpage() {
+  // location.reload(); // This line refreshes the page
+  window.location.reload(true);
+}

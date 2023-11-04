@@ -2,7 +2,7 @@ let PROJECT_ID = "fzto7fg7";
 let DATASET = "production";
 
 let QUERY = encodeURIComponent(`*[_type == "post"]
-{title,body}`);
+{title,body,"imageUrl": mainImage.asset->url}`);
 
 // Compose the URL for your project's endpoint and add the query
 let URL = `https://${PROJECT_ID}.api.sanity.io/v2021-10-21/data/query/${DATASET}?query=${QUERY}`;
@@ -17,10 +17,12 @@ fetch(URL)
   })
 
   .then((data) => {
-    // console.log(data);
+    console.log(data);
 
     const title = data.result[0].title;
     const body = data.result[0].body[0].children[0].text;
+    let imgurl = data.result[0].imageUrl;
+    document.getElementById("imageElement").src = imgurl + "?h=400";
     document.getElementById("first").textContent = `${title}  ${body} `;
   })
 
@@ -34,25 +36,6 @@ const imageElement = document.getElementById("imageElement");
 let imagequery = encodeURIComponent(
   `*[_type == 'post']{"imageUrl": mainImage.asset->url}`
 );
-
-let imageURL = `https://${PROJECT_ID}.api.sanity.io/v2021-10-21/data/query/${DATASET}?query=${imagequery}`;
-
-fetch(imageURL)
-  .then((res) => {
-    if (res.ok) {
-      return res.json();
-    } else {
-      throw new Error("FAILED TO FETCH IMAGE");
-    }
-  })
-  .then((data) => {
-    // console.log(data.result[0].imageUrl);
-    let imgurl = data.result[0].imageUrl;
-    document.getElementById("imageElement").src = imgurl + "?h=400";
-  })
-  .catch((error) => {
-    console.error("Error:", error);
-  });
 
 async function sendToSanity() {
   const myString = document.getElementById("myString").value;
