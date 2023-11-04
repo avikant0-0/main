@@ -21,17 +21,9 @@ fetch(URL1)
       h4elelement.textContent = item;
       commentContainer.appendChild(h4elelement);
     });
-    // const title = data.result[0].title;
-    // const body = data.result[0].body[0].children[0].text;
-    // document.getElementById("first").textContent = `${title}  ${body} `;
   })
 
   .catch((error) => {
     console.error("Error:", error);
-    // datacontainer.innerHTML = "Failed to fetch data.";
+    commentContainer.innerHTML = "Failed to fetch data.";
   });
-
-function refreshpage() {
-  // location.reload(); // This line refreshes the page
-  window.location.reload(true);
-}
