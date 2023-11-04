@@ -31,12 +31,6 @@ fetch(URL)
     datacontainer.innerHTML = "Failed to fetch data.";
   });
 
-const imageElement = document.getElementById("imageElement");
-
-let imagequery = encodeURIComponent(
-  `*[_type == 'post']{"imageUrl": mainImage.asset->url}`
-);
-
 async function sendToSanity() {
   const myString = document.getElementById("myString").value;
   const projectId = "fzto7fg7";
